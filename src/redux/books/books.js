@@ -1,6 +1,6 @@
 // action types
-const ADD_BOOK = 'ADD_BOOK';
-const REMOVE_BOOK = 'REMOVE_BOOk';
+const ADD_BOOK = 'bookstore2/books/ADD_BOOK';
+const REMOVE_BOOK = 'bookstore2/books/REMOVE_BOOk';
 
 const initialState = [];
 
