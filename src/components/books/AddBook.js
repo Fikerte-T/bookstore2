@@ -6,7 +6,7 @@ import { addBook } from '../../redux/books/books';
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [category] = useState('Fiction');
+  const [category, setCategory] = useState('');
   const dispatch = useDispatch();
 
   const submitBookToStore = (e) => {
@@ -23,12 +23,17 @@ const AddBook = () => {
     setAuthor('');
   };
   return (
-    <div>
-      <h3>ADD NEW BOOK</h3>
+    <div className="add-book">
+      <h3 className="add-book-title">ADD NEW BOOK</h3>
       <form onSubmit={submitBookToStore}>
-        <input type="text" placeholder="title" name="title" onChange={(e) => setTitle(e.target.value)} value={title} />
-        <input type="text" placeholder="author" name="author" onChange={(e) => setAuthor(e.target.value)} value={author} />
-        <button type="submit">Add book</button>
+        <input className="inputs" type="text" placeholder="title" name="title" onChange={(e) => setTitle(e.target.value)} value={title} />
+        <select defaultValue="category" required className="inputs category" name="Category" onChange={(e) => setCategory(e.target.value)}>
+          <option value="" disabled>Category</option>
+          <option value="Fiction">Fiction</option>
+          <option value="History">History</option>
+
+        </select>
+        <button className="btn" type="submit">Add book</button>
       </form>
     </div>
   );
