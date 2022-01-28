@@ -6,10 +6,10 @@ import { getBooksFromApi } from '../../redux/books/books';
 
 const Books = () => {
   const books = useSelector((state) => state.books);
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(getBooksFromApi());
-	},[])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBooksFromApi());
+  }, []);
 
   return (
     <div>

@@ -6,7 +6,7 @@ import { addBook } from '../../redux/books/books';
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-	const [category] = useState('Fiction');
+  const [category] = useState('Fiction');
   const dispatch = useDispatch();
 
   const submitBookToStore = (e) => {
