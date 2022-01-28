@@ -6,6 +6,7 @@ import { addBook } from '../../redux/books/books';
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [category] = useState('Fiction');
   const dispatch = useDispatch();
 
   const submitBookToStore = (e) => {
@@ -13,9 +14,9 @@ const AddBook = () => {
     if (title === '' && author === '') { return; }
 
     const newBook = {
-      id: uuid4(),
+      item_id: uuid4(),
       title,
-      author,
+      category,
     };
     dispatch(addBook(newBook));
     setTitle('');
