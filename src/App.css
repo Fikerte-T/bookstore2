@@ -139,3 +139,100 @@ select:invalid,
   font-family: 'Manrope', sans-serif;
   letter-spacing: 0.5px;
 }
+
+.books-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: #fff;
+  width: 95%;
+  margin: 1rem auto;
+}
+
+.book-info,
+.progress-container,
+.chapter-container {
+  padding: 1rem;
+  flex: 2;
+}
+
+.book-category,
+.completed {
+  opacity: 0.5;
+  font-size: 0.875rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #121212;
+}
+
+.book-title {
+  font-family: "RobotoSlab", serif;
+  font-size: 1.375rem;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+  color: #121212;
+}
+
+.book-author {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #4386bf;
+  font-family: "RobotoSlab", serif;
+}
+
+.util-btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1.313rem 0;
+}
+
+.util-btn {
+  background-color: #fff;
+  flex: 2;
+  width: 9rem;
+  margin-right: 0.5rem;
+  text-align: left;
+  font-family: "RobotoSlab", serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #4386bf;
+}
+
+.percentage {
+  font-size: 2rem;
+  color: #121212;
+}
+
+.CircularProgressbar {
+  height: 4.25rem;
+  width: 4.25rem;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1.313rem;
+}
+
+.current-chapter {
+  opacity: 0.5;
+  font-family: "RobotoSlab", serif;
+  font-size: 0.813rem;
+  font-weight: 300;
+  color: #121212;
+}
+
+.chapter {
+  font-family: "RobotoSlab", serif;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: -0.4px;
+  color: #121212;
+}
+
+.update {
+  margin-top: 1.438rem;
+}
