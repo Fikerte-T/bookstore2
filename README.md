@@ -1,6 +1,6 @@
 # Book store -- React
 
->Bookstore website is a React and Redux app. The purpose of this first milestone is to lay foundations for the app, structuring the files using "feature folder" approach and to setup routing using React Router.
+>Bookstore website is a React and Redux app. It allows users to add a book, remove a selected book and display the list of books mainly using React and Redux.
 
 
 ## Built With
