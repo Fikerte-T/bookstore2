@@ -2,32 +2,38 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AddBook from './AddBook';
 import BooksList from './BooksList';
-import { getBooksFromApi } from '../../redux/books/books';
+import { fetchBooks } from '../../redux/books/books';
 
 const Books = () => {
-  const books = useSelector((state) => state.books);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getBooksFromApi());
-  }, []);
+  const dispatch = useDispatch()
+  const {status, books, error} = useSelector(state => state.books)
+	useEffect(() => {
+		if(status === 'idle'){
+			dispatch(fetchBooks())
+		}
+	}, [status, dispatch])
 
-  return (
-    <div>
+  let content;
+  if (status === 'loading') {
+    content = <div>Loading...</div>;
+  } else if (status === 'failed') {
+    content = <div>{error}</div>;
+  } else if (status === 'succeeded') {
+    // console.log('success')
+    // content = <div>succeeded</div>;
+    content = 
+    <>
       <div className="book-list">
-        {
-            books.map((book) => (
-              <BooksList
-                key={book.item_id}
-                id={book.item_id}
-                title={book.title}
-                category={book.category}
-              />
-            ))
-         }
-
+        <BooksList books={books} />
       </div>
       <AddBook />
-    </div>
+    </>;
+  }
+
+  return (
+    <>
+      {content}
+    </>
   );
 };
 

@@ -1,70 +1,86 @@
-// action types
-const ADD_BOOK = 'bookstore2/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookstore2/books/REMOVE_BOOK';
-const GET_BOOKS = 'bookstore2/books/GET_BOOKS';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
 const booksUrl = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/hVobthKhfGMXGnlerGtB/books';
 
-const initialState = [];
-
-const sendHttpRequest = (method, url, data) => fetch(url, {
-  method,
-  body: JSON.stringify(data),
-  headers: data ? { 'Content-type': 'application/json' } : {},
-});
-
-const postBookToApi = async (book) => {
-  await sendHttpRequest('POST', booksUrl, {
-    item_id: book.item_id,
-    title: book.title,
-    category: book.category,
-  });
+const initialState = {
+  status: 'idle',
+  books: [],
+  error: null,
 };
 
-// action creators
-export const getBooksFromApi = () => (async (dispatch) => {
-  const response = await sendHttpRequest('GET', booksUrl);
-  const data = await response.json();
+// const postBookToApi = async (book) => {
+//   const response = await sendHttpRequest('POST', booksUrl, {
+//     item_id: book.item_id,
+//     title: book.title,
+//     category: book.category,
+//     author: '',
+//   });
+//   // console.log(res)
+//   return response;
+// };
+
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async() => {
+  const response = await axios.get(booksUrl);
+  const data = response.data;
   const booksData = Object.entries(data).map(([itemId, [book]]) => ({
     item_id: itemId,
     title: book.title,
     category: book.category,
-  }));
-  dispatch({
-    type: GET_BOOKS,
-    booksData,
-  });
+  }))
+  return booksData;
 });
 
-export const addBook = (book) => async (dispatch) => {
-  await postBookToApi(book);
-  dispatch({
-    type: ADD_BOOK,
-    book,
-  });
-};
+// export const addBook = (book) => async (dispatch) => {
+//   const res = await postBookToApi(book);
+//   // console.log(res)
+//   dispatch({
+//     type: ADD_BOOK,
+//     book,
+//   });
+//   return res;
+// };
 
-export const removeBook = (id) => (async (dispatch) => {
-  await sendHttpRequest('DELETE', `${booksUrl}/${id}`, {
-    item_id: id,
-  });
-  dispatch({
-    type: REMOVE_BOOK,
-    id,
-  });
-});
+export const removeBook = createAsyncThunk('books/removeBook', async(id) => {
+  const response = await axios.delete(`${booksUrl}/${id}`, {item_id: id})
+  console.log(response)
+  return response
+})
 
 // reducer
-const booksReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK:
-      return [...state, action.book];
-    case REMOVE_BOOK:
-      return state.filter((book) => book.item_id !== action.id);
-    case GET_BOOKS:
-      return [...state, ...action.booksData];
-    default:
-      return state;
-  }
-};
-
-export default booksReducer;
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase('books/fetchBooks/fulfilled', (state, action) => {
+        state.status = 'succeeded';
+        console.log(action.payload)
+        state.books = action.payload;
+      })
+      .addCase(fetchBooks.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      //remove book
+      .addCase(removeBook.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(removeBook.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const id = action.meta.arg;
+        if(id) {
+          state.books = state.books.filter(book => book.item_id !== id)
+        }
+      })
+      .addCase(removeBook.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+  },
+});
+export default booksSlice.reducer;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuid4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../../redux/books/books';
+import { addBook, getBooksFromApi } from '../../redux/books/books';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
@@ -17,6 +17,7 @@ const AddBook = () => {
       item_id: uuid4(),
       title,
       category,
+      author,
     };
     dispatch(addBook(newBook));
     setTitle('');
@@ -27,7 +28,7 @@ const AddBook = () => {
       <h3 className="add-book-title">ADD NEW BOOK</h3>
       <form onSubmit={submitBookToStore}>
         <input className="inputs" type="text" placeholder="title" name="title" onChange={(e) => setTitle(e.target.value)} value={title} />
-        <select defaultValue="category" required className="inputs category" name="Category" onChange={(e) => setCategory(e.target.value)}>
+        <select defaultValue="category" required className="inputs category" name="Category" onChange={(e) => setCategory(e.target.value)} value={category}>
           <option value="" disabled>Category</option>
           <option value="Fiction">Fiction</option>
           <option value="History">History</option>
