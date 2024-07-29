@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuid4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { addBook, getBooksFromApi } from '../../redux/books/books';
+import { addNewBook } from '../../redux/books/books';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
@@ -11,7 +11,7 @@ const AddBook = () => {
 
   const submitBookToStore = (e) => {
     e.preventDefault();
-    if (title === '' && author === '') { return; }
+    // if (title === '' && author === '') { return; }
 
     const newBook = {
       item_id: uuid4(),
@@ -19,7 +19,7 @@ const AddBook = () => {
       category,
       author,
     };
-    dispatch(addBook(newBook));
+    dispatch(addNewBook(newBook));
     setTitle('');
     setAuthor('');
   };

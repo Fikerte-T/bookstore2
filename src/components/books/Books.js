@@ -5,13 +5,13 @@ import BooksList from './BooksList';
 import { fetchBooks } from '../../redux/books/books';
 
 const Books = () => {
-  const dispatch = useDispatch()
-  const {status, books, error} = useSelector(state => state.books)
-	useEffect(() => {
-		if(status === 'idle'){
-			dispatch(fetchBooks())
-		}
-	}, [status, dispatch])
+  const dispatch = useDispatch();
+  const { status, books, error } = useSelector((state) => state.books);
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchBooks());
+    }
+  }, [status, dispatch]);
 
   let content;
   if (status === 'loading') {
@@ -19,15 +19,14 @@ const Books = () => {
   } else if (status === 'failed') {
     content = <div>{error}</div>;
   } else if (status === 'succeeded') {
-    // console.log('success')
-    // content = <div>succeeded</div>;
-    content = 
-    <>
-      <div className="book-list">
-        <BooksList books={books} />
-      </div>
-      <AddBook />
-    </>;
+    content = (
+      <>
+        <div className="book-list">
+          <BooksList books={books} />
+        </div>
+        <AddBook />
+      </>
+    );
   }
 
   return (

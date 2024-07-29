@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import { removeBook } from '../../redux/books/books';
 
 const BooksList = ({ books }) => {
-  // console.log(books);
-  // const { id, title, category } = props;
   const [author] = useState('Haddis Alemayehu');
   const percentage = 60;
   const dispatch = useDispatch();
   const removeBookFromStore = (id) => {
     dispatch(removeBook(id));
   };
+
+  // const updateBook = (id) => {
+  //   dispatch(updateBook(id))
+  // }
   return (
     <div className="books-container">
       {books.map((book) => (
-        <div>
+        <div key={book.item_id}>
           <div className="book-info">
             <div className="books">
               <p className="book-category">{book.category}</p>
@@ -26,7 +27,7 @@ const BooksList = ({ books }) => {
             <div className="util-btn-container">
               <button className="util-btn" type="button">Comments</button>
               <button className="util-btn" type="button" onClick={() => removeBookFromStore(book.item_id)}>Remove</button>
-              <button className="util-btn" type="button">Edit</button>
+              {/* <Link className='util-btn' to={`/editBook/${book.item_id}`}>Edit</Link> */}
             </div>
           </div>
           <div className="progress-container">
@@ -55,11 +56,5 @@ const BooksList = ({ books }) => {
     </div>
   );
 };
-
-// BooksList.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   category: PropTypes.string.isRequired,
-// };
 
 export default BooksList;

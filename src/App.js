@@ -5,6 +5,7 @@ import {
 import Books from './components/books/Books';
 import Categories from './components/categories/Categories';
 import Navbar from './components/Navbar';
+import EditBookForm from './components/EditBookForm';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Navigate to="/books" />} />
         <Route path="/books" element={<Books />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/editBook/:bookId" element={<EditBookForm />} />
       </Routes>
     </BrowserRouter>
   );
