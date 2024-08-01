@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import { useDispatch } from 'react-redux';
 import { removeBook } from '../../redux/books/books';
 
@@ -17,7 +18,7 @@ const BooksList = ({ books }) => {
   return (
     <div className="books-container">
       {books.map((book) => (
-        <div key={book.item_id}>
+        <div key={book.item_id} className="book-container">
           <div className="book-info">
             <div className="books">
               <p className="book-category">{book.category}</p>

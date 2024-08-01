@@ -24,6 +24,7 @@ const Books = () => {
         <div className="book-list">
           <BooksList books={books} />
         </div>
+        <hr />
         <AddBook />
       </>
     );

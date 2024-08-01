@@ -13,6 +13,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/books" />} />
+        {/* <Redirect from="/" to="/books" /> */}
         <Route path="/books" element={<Books />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/editBook/:bookId" element={<EditBookForm />} />

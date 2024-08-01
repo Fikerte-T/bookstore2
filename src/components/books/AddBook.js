@@ -27,14 +27,13 @@ const AddBook = () => {
     <div className="add-book">
       <h3 className="add-book-title">ADD NEW BOOK</h3>
       <form onSubmit={submitBookToStore}>
-        <input className="inputs" type="text" placeholder="title" name="title" onChange={(e) => setTitle(e.target.value)} value={title} />
-        <select defaultValue="category" required className="inputs category" name="Category" onChange={(e) => setCategory(e.target.value)} value={category}>
+        <input className="inputs" type="text" placeholder="Book title" name="title" onChange={(e) => setTitle(e.target.value)} value={title} required />
+        <select required className="inputs category" name="category" onChange={(e) => setCategory(e.target.value)} value={category}>
           <option value="" disabled>Category</option>
           <option value="Fiction">Fiction</option>
           <option value="History">History</option>
-
         </select>
-        <button className="btn" type="submit">Add book</button>
+        <button className="btn" type="submit">ADD BOOK</button>
       </form>
     </div>
   );
