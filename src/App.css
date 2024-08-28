@@ -68,6 +68,15 @@ body {
   color: #121212;
 }
 
+a.active {
+  color: #000;
+  font-weight: 600;
+}
+
+.juNRvt {
+  justify-content: center;
+}
+
 .add-book {
   width: 95%;
   margin: 1rem auto;
