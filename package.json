@@ -1,7 +1,7 @@
 {
   "name": "bookstore2",
   "version": "0.1.0",
-  "homepage": "https://fikerte-t.github.io/react-gh-pages",
+  "homepage": "https://fikerte-t.github.io/bookstore2",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
