@@ -24,7 +24,6 @@ body {
   width: 100%;
   height: 6rem;
   display: flex;
-  justify-content: space-around;
   align-items: center;
   margin-top: 4.313rem;
   background-color: #fff;
@@ -33,7 +32,7 @@ body {
 .navbar .logo {
   width: 15rem;
   height: 2.313rem;
-  padding-left: 1rem;
+  padding-left: 2rem;
   font-size: 1.875rem;
   font-weight: 800;
   font-stretch: normal;
@@ -48,7 +47,7 @@ body {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 40%;
+  width: 30%;
   height: 100%;
 }
 
@@ -67,6 +66,15 @@ body {
 .navbar a {
   text-decoration: none;
   color: #121212;
+}
+
+a.active {
+  color: #000;
+  font-weight: 600;
+}
+
+.juNRvt {
+  justify-content: center;
 }
 
 .add-book {
@@ -140,13 +148,29 @@ select:invalid,
   letter-spacing: 0.5px;
 }
 
+.book-list {
+  margin: 2rem 0;
+}
+
+hr {
+  border-top: 1.5px solid #ebebeb;
+}
+
 .books-container {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
-  background-color: #fff;
   width: 95%;
   margin: 1rem auto;
+  background-color: #f5f6fa;
+}
+
+.book-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  margin: 0.5rem 0;
 }
 
 .book-info,
@@ -174,6 +198,7 @@ select:invalid,
   font-weight: 900;
   letter-spacing: -0.2px;
   color: #121212;
+  text-transform: capitalize;
 }
 
 .book-author {
